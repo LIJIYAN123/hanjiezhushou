@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --color-industrial-gray: #1a1c1e;
+  --color-welding-orange: #ff6b00;
+  --color-welding-blue: #00d4ff;
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-industrial-gray text-slate-100 antialiased overflow-hidden;
+  }
+}
+
+@keyframes spark {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  100% { transform: scale(1) rotate(180deg); opacity: 0; }
+}
+
+.spark-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ff6b00;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 10px #ff6b00, 0 0 20px #ff4d00;
+}
+
+.glass-panel {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+}
+
+.scanline {
+  width: 100%;
+  height: 100px;
+  z-index: 5;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 107, 0, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+  opacity: 0.1;
+  position: absolute;
+  bottom: 100%;
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% { bottom: 100%; }
+  100% { bottom: -100px; }
+}
+
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 100;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.metal-gradient {
+  background: linear-gradient(145deg, #2a2d30, #16181a);
+}
+
+.orange-glow {
+  box-shadow: 0 0 30px rgba(255, 107, 0, 0.2);
+}
+
